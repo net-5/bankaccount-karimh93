@@ -7,10 +7,23 @@ namespace BankAccount
         static void Main(string[] args)
         {
 
-            Transactions t = new Transactions(1000);
+           BankAccount t = new BankAccount(1000);
+           
             t.Statement();
+            t.InitialBalance();
             t.MakeDeposit();
-            t.Statement();
+            t.Withdrawal();
+            t.MakeDeposit();
+            t.CloseAccount();
+            t.MakeDeposit();
+           
+
+
+            
+            
+           
+            
+            
 
 
         }
