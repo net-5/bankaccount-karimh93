@@ -8,12 +8,16 @@ namespace BankAccount
     public class AccountDetails
     {
         public string Name { get; }
-        public long ID { get; }
+        
+        public decimal Money { get; }
 
-        public AccountDetails(string name, long id)
+        public AccountDetails(decimal money,string name)
         {
+
+            this.Money = money;
             this.Name = name;
-            this.ID = id;
+            
+            
 
         }
     }

@@ -7,15 +7,15 @@ namespace BankAccount
         static void Main(string[] args)
         {
 
-           BankAccount t = new BankAccount(1000);
-           
+           BankAccount t = new BankAccount("Karim Husein",10000,"120211311");
             t.Statement();
-            t.InitialBalance();
-            t.MakeDeposit();
-            t.Withdrawal();
-            t.MakeDeposit();
-            t.CloseAccount();
-            t.MakeDeposit();
+            t.Withdrawal(2000, "Car");
+            t.MakeDeposit(1000, "Salary");
+            t.Statement();
+            
+           
+           
+            
            
 
 

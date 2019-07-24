@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BankAccount
 {
-    public class BankAccount : AccountDetails
+    public class BankAccount
     {
         private decimal balance;
         public enum Status
@@ -15,46 +15,44 @@ namespace BankAccount
             Closed
         }
 
+        public string AccountNumber { get; }
+        public string Owner { get; }
 
         public Status status { get; set; }
 
-        
+        private List<AccountDetails> accountDetails = new List<AccountDetails>();
 
-      
-        private List<BankAccount> transactions = new List<BankAccount>();
-
-        public BankAccount(decimal balance) : base(name: "Karim", 1930602226735)
+        public BankAccount(string owner,decimal balance,string accountNumber)
         {
             this.balance = balance;
+            this.Owner = owner;
+            this.AccountNumber = accountNumber;
         }
 
-        public void Withdrawal()
+        public void Withdrawal(decimal amount, string name)
         {
-            Console.WriteLine("Please enter an amount:");
-
-            decimal withdrawal = Convert.ToDecimal(Console.ReadLine());
 
 
             if (status == Status.Open)
             {
 
 
-                if (withdrawal <= 0)
+                if (amount <= 0)
                 {
                     Console.WriteLine("Please enter a positive amount");
                 }
 
-                 if (balance - withdrawal < 0)
+                if (balance - amount < 0)
                 {
 
                     Console.WriteLine("You don't have enough money");
 
                 }
 
-                if (balance - withdrawal > 0)
+                if (balance - amount > 0)
 
                 {
-                    balance -= withdrawal;
+                    balance -= amount;
                     Console.WriteLine($"Current balance = {balance}");
                 }
             }
@@ -65,23 +63,19 @@ namespace BankAccount
 
             }
 
-            var w = new BankAccount(balance);
-
-            transactions.Add(w);
+            var w = new AccountDetails(amount, name);
+            accountDetails.Add(w);
 
         }
 
-        public void MakeDeposit()
+        public void MakeDeposit(decimal amount, string name)
         {
-            Console.WriteLine("Please enter an amount:");
 
-            decimal deposit = Convert.ToDecimal(Console.ReadLine());
-            
-            
+
 
             if (status == Status.Open)
             {
-                if (deposit <= 0)
+                if (amount <= 0)
                 {
                     Console.WriteLine("Please enter a positive amount");
                 }
@@ -89,7 +83,7 @@ namespace BankAccount
                 else
                 {
 
-                    balance += deposit;
+                    balance += amount;
                     Console.WriteLine($"Current balance = {balance}");
                 }
             }
@@ -101,8 +95,8 @@ namespace BankAccount
 
             }
 
-            var d = new BankAccount(balance);
-            transactions.Add(d);
+            var d = new AccountDetails(amount, name);
+            accountDetails.Add(d);
         }
 
 
@@ -112,18 +106,12 @@ namespace BankAccount
             Console.WriteLine("Your account has been closed");
         }
 
-        public void InitialBalance()
-        {
-            Console.WriteLine($"Your balance:{balance}");
-        }
-
         public void Statement()
         {
-            Console.WriteLine($"Details about your account:");
-            Console.WriteLine($"Full Name:{Name}");
-            Console.WriteLine($"ID:{ID}");
-            
-
+            Console.WriteLine($"Owner name:{Owner}");
+            Console.WriteLine($"Account number:{AccountNumber}");
+            Console.WriteLine($"Your balance:{balance}");
         }
     }
 }
+
