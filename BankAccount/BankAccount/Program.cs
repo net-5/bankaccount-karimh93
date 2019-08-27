@@ -7,11 +7,12 @@ namespace BankAccount
         static void Main(string[] args)
         {
 
-           BankAccount t = new BankAccount("Karim Husein",10000,"120211311");
-            t.Statement();
-            t.Withdrawal(2000, "Car");
-            t.MakeDeposit(1000, "Salary");
-            t.Statement();
+            BankAccount account = new BankAccount(new Owner("Karim Husein", 19243132132, "Iasi"));
+
+            account.MakeDeposit(1000, "University");
+            account.Withdrawal(200, "Groceries");
+
+            account.Statement();
             
            
            

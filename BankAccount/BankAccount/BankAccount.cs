@@ -8,7 +8,7 @@ namespace BankAccount
 {
     public class BankAccount
     {
-        private decimal balance;
+        private decimal balance = 0;
         public enum Status
         {
             Open,
@@ -16,17 +16,17 @@ namespace BankAccount
         }
 
         public string AccountNumber { get; }
-        public string Owner { get; }
+        public Owner Owner { get; }
 
         public Status status { get; set; }
 
         private List<AccountDetails> accountDetails = new List<AccountDetails>();
 
-        public BankAccount(string owner,decimal balance,string accountNumber)
+        public BankAccount(Owner owner)
         {
-            this.balance = balance;
+            
             this.Owner = owner;
-            this.AccountNumber = accountNumber;
+           
         }
 
         public void Withdrawal(decimal amount, string name)
@@ -108,8 +108,10 @@ namespace BankAccount
 
         public void Statement()
         {
-            Console.WriteLine($"Owner name:{Owner}");
-            Console.WriteLine($"Account number:{AccountNumber}");
+
+            Console.WriteLine("------------------------");
+            Console.WriteLine($"Owner name:{Owner.Name}");
+            Console.WriteLine($"Account number:{Owner.Id}");
             Console.WriteLine($"Your balance:{balance}");
         }
     }
